@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Adoption & Rescue</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik+Maze&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="#" class="logo">
+      <img src="logo.png" alt="Logo" class="logo-img">
+      <div class="logo-text">
+          <span class="main-title">KUTIYA</span>
+          <span class="subtitle">Kindness Unites Tails In Your Area</span>
+      </div>
+  </a>
+  
+    <ul class="nav-links">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#" onclick="openAboutModal()">About</a></li> <!-- Updated -->
+      <!-- <li><a href="#adopt">Adopt Pet</a></li> -->
+      <li><a href="#report" id="reportBtn">Report</a></li> <!-- Report Button -->
+      <li><a href="#" onclick="openDonationModal()">Donation</a></li> <!-- Updated -->
+    </ul>
+  </nav>
+
+
+  <!-- modal for about -->
+
+<!-- Modal for About Information -->
+<div id="about-modal" class="modal">
+  <div class="modal-content">
+    <span class="close" id="closeReportModal">&times;</span> <!-- Unique ID for report modal -->
+    <h2>About Me</h2>
+      Meet <strong>Roshan,</strong><br> a dedicated <strong>student at Universal College</strong>, where he is pursuing a <strong>degree in Computer Engineering  </strong>.With a strong mindset and a passion for development.
+  <br>Roshan <strong>has successfully completed various projects</strong>, showcasing his ability to blend technical expertise with creativity. He is always eager to learn and grow, driven by an insatiable hunger for excellence in his craft.
+ <br> Roshan embodies the spirit of innovation and determination, constantly seeking opportunities to create impactful solutions and contribute meaningfully to the tech community. <br>His journey is not just about mastering skills; it's about pushing boundaries and transforming ideas into reality.</p>
+  </div>
+</div>
+
+
+  <!-- Report Pet Modal -->
+  <div id="reportModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Report a Rescued Pet</h2>
+      <form id="reportForm">
+        <label for="petName">Pet Name:</label>
+        <input type="text" id="petName" name="petName" required>
+        
+        <label for="petAge">Age:</label>
+        <input type="number" id="petAge" name="petAge" required>
+        
+        <label for="petBreed">Breed:</label>
+        <input type="text" id="petBreed" name="petBreed" required>
+        
+        <label for="petHealth">Health Condition:</label>
+        <input type="text" id="petHealth" name="petHealth" required>
+        
+        <label for="petCategory">Category:</label>
+        <select id="petCategory" name="petCategory" required>
+          <option value="" disabled selected>Select Category</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="other">Other</option>
+        </select>
+
+        <label for="petImage">Upload Image:</label>
+        <input type="file" id="petImage" name="petImage" accept="image/*" required>
+        
+        <button type="submit">Report Pet</button>
+      </form>
+    </div>
+  </div>
+
+
+  <!-- donation form  -->
+
+ <!-- Modal for Donationn form -->
+ <div id="donation-modal" class="modal">
+  <div class="modal-content">
+      <span class="close" onclick="closeDonationModal()">&times;</span>
+      <h2>Make a Donation</h2>
+      <form id="donation-form" onsubmit="submitDonation(event)">
+          <label for="amount">Donation Amount (INR):</label>
+          <input type="number" id="amount" required min="1" step="any">
+
+          <label for="upi-id">Your UPI ID:</label>
+          <input type="text" id="upi-id" required placeholder="example@upi">
+
+          <button type="submit">Donate Now</button>
+      </form>
+  </div>
+</div>
+
+
+
+  <!-- Main Body -->
+  <section id="home" class="main-container">
+    <div class="container-title">
+      <h1>Find Your Perfect Companion</h1>
+      <p>Adopt a pet today and give them a forever home!</p>
+    </div>
+
+<!--  pet not available messege -->
+<div id="noPetsMessage" class="noPetsMessage-text" style="display: none;">
+  <br>Oops, No PET available at this moment ! Sorry</h2>
+</div>
+    <!-- Pet Cards Container -->
+    <div class="pet-cards-container">
+      <h2>Dogs</h2>
+      <div class="scrollable-container" id="dogsContainer"></div>
+
+      <h2>Cats</h2>
+      <div class="scrollable-container" id="catsContainer"></div>
+
+      <h2>Other</h2>
+      <div class="scrollable-container" id="othersContainer"></div>
+    </div>
+
+    <!-- Thoughts Section -->
+    <div class="thoughts-section">
+      <h2>Thought of the Day</h2>
+      <p>"Saving one pet won’t change the world, but for that one pet, the world will change forever."</p>
+      <!-- <button class="explore-btn">Explore More</button> -->
+    </div>
+  </section>
+
+
+
+<!-- Adoption form modal -->
+
+<!-- Adoption Request Modal -->
+<div id="adoptionModal" class="modal">
+  <div class="modal-content">
+      <span class="close-button">&times;</span>
+      <h2>Adoption Request Form</h2>
+      <p>The adoption process consists of 3 stages:</p>
+      <ol>
+          <li>Request Raising</li>
+          <li>If selected, Interview</li>
+          <li>Home Visit Verification</li>
+      </ol>
+      <form id="adoptionForm">
+          <label for="name">Your Name:</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="email">Your Email:</label>
+          <input type="email" id="email" name="email" required>
+
+          <label for="phone">Your Phone Number:</label>
+          <input type="tel" id="phone" name="phone" required>
+
+          <label for="message">Why do you want to adopt this pet?</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button type="submit">Submit Request</button>
+      </form>
+  </div>
+</div>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="contact-info">
+      <h3>Contact Us</h3>
+      <p>Email: Roshwork.in@gmail.com</p>
+      <p>Phone: +91 9699753003</p>
+      <div class="social-icons">
+        <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://youtube.com" target="_blank" class="social-icon"><i class="fab fa-youtube"></i></a>
+    </div>
+    <div class="terms">
+      <a href="#terms">Terms and Conditions</a>
+    </div>
+</div>
+  </footer>
+
+  <!-- JS Script -->
+  <script src="script.js"></script>
+</body>
+</html>
