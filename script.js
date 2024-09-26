@@ -201,4 +201,46 @@ document.getElementById('adoptionForm').onsubmit = function(event) {
 attachAdoptButtonListeners();
 
 
+// modal for be volunteer 
+
+// Volunteer Modal Script
+function openVolunteerModal() {
+    document.getElementById('volunteerModal').style.display = 'block';
+}
+
+function closeVolunteerModal() {
+    document.getElementById('volunteerModal').style.display = 'none';
+}
+
+function submitVolunteerForm(event) {
+    event.preventDefault(); // Prevent the form from submitting normally
+
+    // Retrieve form data
+    const volunteerName = document.getElementById('volunteerName').value;
+    const volunteerEmail = document.getElementById('volunteerEmail').value;
+    const volunteerPhone = document.getElementById('volunteerPhone').value;
+    const volunteerSkills = document.getElementById('volunteerSkills').value;
+
+    // Process the form data (you can send this to a server or log it)
+    console.log('Volunteer Application:', { volunteerName, volunteerEmail, volunteerPhone, volunteerSkills });
+
+    // Show submission alert
+    alert('Your volunteer application has been submitted successfully!');
+
+    // Clear the form
+    document.getElementById('volunteerForm').reset();
+
+    // Close the modal after submission
+    closeVolunteerModal();
+}
+
+// Close modal when clicking outside of it
+window.onclick = function(event) {
+    const volunteerModal = document.getElementById('volunteerModal');
+    if (event.target === volunteerModal) {
+        closeVolunteerModal();
+    }
+};
+
+
 
