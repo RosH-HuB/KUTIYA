@@ -26,6 +26,8 @@
       <li><a href="#home">Home</a></li>
       <li><a href="#" onclick="openAboutModal()">About</a></li> <!-- Updated -->
       <!-- <li><a href="#adopt">Adopt Pet</a></li> -->
+      <li><a href="#" onclick="openVolunteerModal()">Volunteer</a></li> <!-- New Button -->
+
       <li><a href="#report" id="reportBtn">Report</a></li> <!-- Report Button -->
       <li><a href="#" onclick="openDonationModal()">Donation</a></li> <!-- Updated -->
     </ul>
@@ -38,12 +40,46 @@
 <div id="about-modal" class="modal">
   <div class="modal-content">
     <span class="close" id="closeReportModal">&times;</span> <!-- Unique ID for report modal -->
-    <h2>About Me</h2>
+    <h2>About</h2>
       Meet <strong>Roshan,</strong><br> a dedicated <strong>student at Universal College</strong>, where he is pursuing a <strong>degree in Computer Engineering  </strong>.With a strong mindset and a passion for development.
   <br>Roshan <strong>has successfully completed various projects</strong>, showcasing his ability to blend technical expertise with creativity. He is always eager to learn and grow, driven by an insatiable hunger for excellence in his craft.
  <br> Roshan embodies the spirit of innovation and determination, constantly seeking opportunities to create impactful solutions and contribute meaningfully to the tech community. <br>His journey is not just about mastering skills; it's about pushing boundaries and transforming ideas into reality.</p>
   </div>
 </div>
+
+
+<!-- modal for be volunteer -->
+ <!-- Modal for Volunteer form -->
+<div id="volunteerModal" class="modal">
+  <div class="modal-content">
+      <span class="close" onclick="closeVolunteerModal()">&times;</span>
+      <h2>Become a Volunteer</h2>
+      <form id="volunteerForm" onsubmit="submitVolunteerForm(event)">
+          <label for="volunteerName">Your Name:</label>
+          <input type="text" id="volunteerName" name="volunteerName" required>
+
+          <label for="volunteerEmail">Your Email:</label>
+          <input type="email" id="volunteerEmail" name="volunteerEmail" required>
+
+          <label for="volunteerPhone">Your Phone Number:</label>
+          <input type="tel" id="volunteerPhone" name="volunteerPhone" required>
+
+          <label for="volunteerSkills">What skills or help can you provide?</label>
+          <textarea id="volunteerSkills" name="volunteerSkills" required></textarea>
+
+          <button type="submit">Submit Application</button>
+      </form>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
 
 
   <!-- Report Pet Modal -->
@@ -170,8 +206,8 @@
   <footer class="footer">
     <div class="contact-info">
       <h3>Contact Us</h3>
-      <p>Email: Roshwork.in@gmail.com</p>
-      <p>Phone: +91 9699753003</p>
+      <p>Email: Kutiyainfo@gmail.com</p>
+      <p>Phone: +91 ##########</p>
       <div class="social-icons">
         <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
         <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
