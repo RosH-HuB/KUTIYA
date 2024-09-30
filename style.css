@@ -1,28 +1,13 @@
-/* Global Styles */
-* {
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
-
-
-
-body {
-    background-color: #f9f9f9;
+    background-color: #f8f9fa;
     color: #333;
 }
 
-/* Navbar Styles */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #333;
-    padding: 1rem;
-}
-
-/* Logo styles */
+/* Navigation Bar */
 .logo {
     display: flex; /* Use flexbox to align logo and name */
     align-items: center; /* Align items vertically in the center */
@@ -42,373 +27,321 @@ body {
     display: flex; /* Use flexbox to manage KUTIYA and subtitle layout */
     flex-direction: column; /* Stack items vertically */
 }
-
 .subtitle {
     font-size: 1rem; /* Smaller font size for the subtitle */
     color: #aba8a8; /* Optional: Change color for the subtitle */
 }
 
 
-.navbar .nav-links {
-    list-style: none;
-    display: flex;
-}
-
-.navbar .nav-links li {
-    margin: 0 1rem;
-}
-
-.navbar .nav-links li a {
-    color: #fff;
-    text-decoration: none;
-    font-size: 1rem;
-    padding: 0.5rem 1rem;
-    transition: background-color 0.3s;
-}
-
-.navbar .nav-links li a:hover {
-    background-color: #ff6b6b;
-    border-radius: 4px;
-}
-
-/* no pets messege */
-
-
-.noPetsMessage-text{
-    font-family: "Rubik Maze", system-ui;
-    font-weight: 700;
-    font-style: normal;
-}
-
-/* Main Container */
-.main-container {
-    text-align: center;
-    padding: 2rem 0;
-}
-
-.container-title h1 {
-    color: #ff6b6b;
-    font-size: 2.5rem;
-}
-
-.container-title p {
-    color: #555;
-    font-size: 1.2rem;
-    margin: 1rem 0;
-}
-
-/* Pet Cards Container */
-.pet-cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 1.5rem;
-    padding: 2rem;
-}
-
-.pet-card {
-    width: 250px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: #fff;
-    transition: transform 0.3s;
-}
-
-.pet-card:hover {
-    transform: translateY(-5px);
-}
-
-.pet-img {
-    width: 100%;
-    border-radius: 8px;
-}
-
-.pet-info {
-    margin-top: 1rem;
-}
-
-.adopt-btn {
-    display: block;
-    background-color: #ff6b6b;
-    color: #fff;
-    border: none;
-    padding: 0.8rem;
-    margin-top: 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.adopt-btn:hover {
-    background-color: #d9534f;
-}
-
-
-/* scrollable container  */
-
-/* Scrollable Pet Container */
-.scrollable-container {
-    max-height: 400px; /* Adjust this height based on your design */
-    overflow-y: scroll; 
-    overflow-x: hidden; /* Prevent horizontal scrolling */
-    -ms-overflow-style: none;  /* Internet Explorer 10+ */
-    scrollbar-width: none;  /* Firefox */
-}
-
-.scrollable-container::-webkit-scrollbar {
-    display: none; /* Hide the scroll bar in webkit browsers (Chrome, Safari, etc.) */
-}
 
 
 
-/* Thoughts Section */
-.thoughts-section {
-    background-color: #ffefef;
-    padding: 2rem;
-    margin: 2rem 0;
-    border-radius: 8px;
-}
 
-.thoughts-section h2 {
-    color: #ff6b6b;
-    font-size: 1.8rem;
-}
-
-.thoughts-section p {
-    color: #555;
-    font-size: 1.2rem;
-    margin-top: 1rem;
-}
-
-.explore-btn {
-    background-color: #ff6b6b;
-    color: #fff;
-    padding: 0.8rem 1.2rem;
-    border: none;
-    margin-top: 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    width: max-content;
-}
-
-.explore-btn:hover {
-    background-color: #d9534f;
-}
-
-/* Footer Section */
-.footer {
+nav {
     background-color: #333;
-    color: #fff;
-    padding: 2rem;
+    padding: 15px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.footer .contact-info {
-    text-align: center;
+nav h1 {
+    margin: 0;
 }
 
-.footer .terms a {
-    color: #fff;
+.navbar {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.navbar li {
+    margin: 0;
+}
+
+.navbar a {
+    color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-weight: bold;
 }
 
-.footer .terms a:hover {
+.navbar a:hover {
     text-decoration: underline;
 }
 
-/* Social media icons */
-.social-icons {
-    margin: 15px 0;
-}
-
-.social-icons a {
-    text-decoration: none;
-    color: #fff;
-    margin: 0 10px;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
-}
-
-.social-icons a:hover {
-    color: #ff6b6b; /* Lovely pink hover effect */
-}
-
-
-/* Modal Styles */
-.modal {
-    display: none; 
-    position: fixed; 
-    z-index: 1; 
-    padding-top: 100px; 
-    left: 0;
-    top: 0;
-    width: 100%; 
-    height: 100%; 
-    overflow: auto; 
-    background-color: rgba(0, 0, 0, 0.4);
-}
-
-.modal-content {
-    background-color: #fff;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 500px;
-    border-radius: 8px;
-}
-
-.close {
-    color: #aaa;
-    float: right;
+.toggle-menu {
+    display: none;
+    color: white;
     font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
     cursor: pointer;
 }
 
-form label {
+.navbar.active {
     display: block;
-    margin: 10px 0 5px;
 }
 
-form input, form button {
+/* Home Section */
+#home {
+    text-align: center;
+    padding: 50px;
+    position: relative; /* Add relative positioning for the pseudo-element */
+    border-bottom: 2px solid #ff6b6b;
+}
+
+#home::before {
+    content: "";
+    position: absolute; /* Position the pseudo-element absolutely */
+    top: 0;
+    left: 0;
     width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
+    height: 100%;
+    background-image: url("Dhundhun.jpg"); /* Your image path */
+    background-size: cover; /* Ensure the image covers the area */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center; /* Center the image */
+    opacity: 0.4; /* Set opacity of the background */
+    z-index: -1; /* Place the image behind the content */
 }
 
-form button {
+
+#home h1 {
+    margin-bottom: 10px;
+    font-size: 36px;
+    color: #ff6b6b;
+}
+
+#home p {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Report Pet Section */
+#report {
+    padding: 40px;
+    margin: 40px auto;
+    max-width: 600px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+#report h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    color: #ff6b6b;
+}
+
+#report form label,
+#report form input,
+#report form select,
+#report form textarea{
+    display: block;
+    width: 100%;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+#report form input,
+#report form select,
+#report form textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+#report form button {
+    padding: 12px;
     background-color: #ff6b6b;
     color: white;
     border: none;
     cursor: pointer;
-}
-
-form button:hover {
-    background-color: #d9534f;
-}
-
-/* Media Queries for Responsiveness */
-@media only screen and (max-width: 768px) {
-    .pet-cards-container {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .navbar .nav-links {
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-}
-
-
-
-/* css for donation  */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 300px; /* Could be more or less, depending on screen size */
-}
-
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
+    font-size: 16px;
     font-weight: bold;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
+    margin: 10px auto; /* Centering the button */
+    display: block; /* Block display for margin auto to work */
 }
 
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+
+
+#report form button:hover {
+    background-color: #ff6b69;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
+
+
+
+/* Search Bar */
+#search {
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
 }
 
-input {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 15px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
+#search input {
+    padding: 12px;
+    width: 80%;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 16px;
+    margin-bottom: 20px;
 }
 
-button {
-    width: 100%;
+/* Pet Type Filter */
+#pet-filter {
+    text-align: center;
+    margin: 20px auto;
+    max-width: 600px;
+}
+
+#pet-filter select {
     padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background-color: white;
+}
+
+/* Pet Cards */
+#pets-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.pet-card {
+    width: 280px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pet-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+.pet-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.pet-card h3 {
+    margin: 10px 0;
+    font-size: 22px;
+    color: #ff6b6b;
+}
+
+.pet-card p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 15px;
+}
+
+.pet-card button {
+    padding: 10px 15px;
     background-color: #28a745;
     color: white;
     border: none;
-    border-radius: 4px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.3s ease;
 }
 
-button:hover {
+.pet-card button:hover {
     background-color: #218838;
 }
 
-/* adoption form modal styling  */
-
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+/* Adoption Requests */
+#adoption-status {
+    margin: 40px auto;
+    max-width: 600px;
+    text-align: center;
 }
 
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+#adoption-status h3 {
+    font-size: 24px;
+    color: #ff6b6b;
+}
+
+#adoption-requests-list {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+#adoption-requests-list li {
+    background-color: #d1e7dd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    font-size: 16px;
+    color: #155724;
+}
+
+/* Footer */
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
+    margin-top: 40px;
 }
 
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
+footer p {
+    margin: 0;
 }
 
-.close-button:hover,
-.close-button:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+footer a {
+    color: white;
+    text-decoration: underline;
 }
+
+footer a:hover {
+    color: #e2e6ea;
+}
+
+/* Media Queries for responsiveness */
+@media (max-width: 768px) {
+    .toggle-menu {
+        display: inline;
+    }
+
+    .navbar {
+        display: none;
+        flex-direction: column;
+    }
+
+    .navbar.active {
+        display: flex;
+    }
+
+    #search input {
+        width: 90%;
+    }
+
+    #pets-container {
+        justify-content: center;
+    }
+
+    .pet-card {
+        width: 90%;
+    }
+}
+
+
+
