@@ -1,246 +1,158 @@
-// Open the report modal
-const reportBtn = document.getElementById('reportBtn');
-const reportModal = document.getElementById('reportModal');
-const closeReportBtn = document.getElementById('closeReportModal');
+// Toggle Navigation Menu
+const toggleMenu = document.querySelector(".toggle-menu");
+const navbar = document.querySelector(".navbar");
 
-// "Oops, No pets" message element
-const noPetsMessage = document.getElementById('noPetsMessage');
-
-// Open the report modal
-reportBtn.onclick = function() {
-    reportModal.style.display = 'block';
-};
-
-// Close modal function
-function closeModal() {
-    reportModal.style.display = 'none';
-}
-
-// Close modal when the close button is clicked
-closeReportBtn.onclick = closeModal;
-
-// Close modal when clicking outside of the modal
-window.onclick = function(event) {
-    if (event.target === reportModal) {
-        closeModal();
-    }
-};
-
-// Check if containers are empty and show/hide "Oops" message
-function checkContainers() {
-    const dogsContainer = document.getElementById('dogsContainer');
-    const catsContainer = document.getElementById('catsContainer');
-    const othersContainer = document.getElementById('othersContainer');
-
-    if (
-        dogsContainer.children.length === 0 &&
-        catsContainer.children.length === 0 &&
-        othersContainer.children.length === 0
-    ) {
-        noPetsMessage.style.display = 'block'; // Show "Oops" message
-    } else {
-        noPetsMessage.style.display = 'none'; // Hide "Oops" message
-    }
-}
-
-// Function to attach event listeners to adopt buttons
-function attachAdoptButtonListeners() {
-    const adoptButtons = document.querySelectorAll('.adopt-btn');
-    adoptButtons.forEach(button => {
-        button.onclick = openAdoptionModal;
-    });
-}
-
-// Handle Report Form Submission
-const reportForm = document.getElementById('reportForm');
-reportForm.onsubmit = function(event) {
-    event.preventDefault();
-
-    const petName = document.getElementById('petName').value;
-    const petAge = document.getElementById('petAge').value;
-    const petBreed = document.getElementById('petBreed').value;
-    const petHealth = document.getElementById('petHealth').value;
-    const petCategory = document.getElementById('petCategory').value;
-
-    // For simplicity, appending a placeholder pet image
-    const petCardHTML = `
-        <div class="pet-card">
-            <img src="https://via.placeholder.com/300" class="pet-img" alt="${petName}">
-            <div class="pet-info">
-                <h3>${petName}</h3>
-                <p>Age: ${petAge}</p>
-                <p>Breed: ${petBreed}</p>
-                <p>Health: ${petHealth}</p>
-                <button class="adopt-btn">Adopt Me</button>
-            </div>
-        </div>
-    `;
-
-    // Add the pet card to the appropriate container based on the category
-    if (petCategory === 'dog') {
-        document.getElementById('dogsContainer').insertAdjacentHTML('beforeend', petCardHTML);
-    } else if (petCategory === 'cat') {
-        document.getElementById('catsContainer').insertAdjacentHTML('beforeend', petCardHTML);
-    } else {
-        document.getElementById('othersContainer').insertAdjacentHTML('beforeend', petCardHTML);
-    }
-
-    // Attach listeners to new adopt buttons
-    attachAdoptButtonListeners();
-
-    // After submitting, hide "Oops" message if any pet is added
-    checkContainers();
-
-    // Close the modal and reset the form
-    closeModal();
-    reportForm.reset();
-};
-
-// Call checkContainers on page load to display/hide the "Oops" message accordingly
-window.onload = function() {
-    checkContainers(); // Ensure the message is correct when the page loads
-};
-
-// Donation Modal Script
-function openDonationModal() {
-    document.getElementById('donation-modal').style.display = 'block';
-}
-
-function closeDonationModal() {
-    document.getElementById('donation-modal').style.display = 'none';
-}
-
-function submitDonation(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
-
-    const amount = document.getElementById('amount').value;
-    const upiId = document.getElementById('upi-id').value;
-
-    // Create the UPI payment link
-    const paymentLink = `upi://pay?pa=${upiId}&pn=YourOrganizationName&mc=1234&tid=${new Date().getTime()}&tn=Donation%20for%20Animal%20Rescue&am=${amount}&cu=INR&url=https://yourwebsite.com`;
-
-    // Redirect to the UPI payment link
-    window.location.href = paymentLink;
-
-    // Close the modal after submission
-    closeDonationModal();
-}
-
-// About Modal Script
-function openAboutModal() {
-    document.getElementById('about-modal').style.display = 'block';
-}
-
-function closeAboutModal() {
-    document.getElementById('about-modal').style.display = 'none';
-}
-
-// Close modal when clicking outside of it
-window.onclick = function(event) {
-    const donationModal = document.getElementById('donation-modal');
-    const aboutModal = document.getElementById('about-modal');
-    const reportModal = document.getElementById('reportModal');
-
-    if (event.target === donationModal) {
-        closeDonationModal();
-    }
-
-    if (event.target === aboutModal) {
-        closeAboutModal();
-    }
-
-    if (event.target === reportModal) {
-        closeModal();
-    }
-}
-
-// Close modal when the 'X' is clicked
-document.querySelectorAll('.close').forEach(button => {
-    button.addEventListener('click', function() {
-        const modal = button.closest('.modal');
-        if (modal.id === 'about-modal') {
-            closeAboutModal();
-        } else if (modal.id === 'donation-modal') {
-            closeDonationModal();
-        } else if (modal.id === 'reportModal') {
-            closeModal();
-        }
-    });
+toggleMenu.addEventListener("click", () => {
+  navbar.classList.toggle("active");
 });
 
-// Adoption window modal script
-// Open the Adoption Modal
-function openAdoptionModal() {
-    document.getElementById('adoptionModal').style.display = 'block';
+// Array to hold reported pets
+let pets = [];
+
+// Get the current location for pet rescue
+let latitude, longitude;
+
+// Function to get user's current geolocation
+function getLocation() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(showPosition);
+  } else {
+    alert("Geolocation is not supported by this browser.");
+  }
 }
 
-// Handle the Adoption Form Submission
-document.getElementById('adoptionForm').onsubmit = function(event) {
-    event.preventDefault(); // Prevent the default form submission
-
-    // Retrieve form data
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const phone = document.getElementById('phone').value;
-    const message = document.getElementById('message').value;
-
-    // Process the form data (e.g., send it to a server or log it)
-    console.log('Adoption Request:', { name, email, phone, message });
-
-    // Show submission alert
-    alert('Your adoption request has been submitted successfully!');
-
-    // Clear the form
-    this.reset();
-
-    // Close the modal after submission
-    document.getElementById('adoptionModal').style.display = 'none';
-};
-
-// Attach event listeners to adopt buttons on page load
-attachAdoptButtonListeners();
-
-
-// modal for be volunteer 
-
-// Volunteer Modal Script
-function openVolunteerModal() {
-    document.getElementById('volunteerModal').style.display = 'block';
+// Show position and update form input with latitude and longitude
+function showPosition(position) {
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
+  document.getElementById(
+    "pet-location"
+  ).value = `Latitude: ${latitude}, Longitude: ${longitude}`;
 }
 
-function closeVolunteerModal() {
-    document.getElementById('volunteerModal').style.display = 'none';
-}
+// Handle form submission for reporting a pet
+document
+  .getElementById("report-pet-form")
+  .addEventListener("submit", function (e) {
+    e.preventDefault();
 
-function submitVolunteerForm(event) {
-    event.preventDefault(); // Prevent the form from submitting normally
-
-    // Retrieve form data
-    const volunteerName = document.getElementById('volunteerName').value;
-    const volunteerEmail = document.getElementById('volunteerEmail').value;
-    const volunteerPhone = document.getElementById('volunteerPhone').value;
-    const volunteerSkills = document.getElementById('volunteerSkills').value;
-
-    // Process the form data (you can send this to a server or log it)
-    console.log('Volunteer Application:', { volunteerName, volunteerEmail, volunteerPhone, volunteerSkills });
-
-    // Show submission alert
-    alert('Your volunteer application has been submitted successfully!');
-
-    // Clear the form
-    document.getElementById('volunteerForm').reset();
-
-    // Close the modal after submission
-    closeVolunteerModal();
-}
-
-// Close modal when clicking outside of it
-window.onclick = function(event) {
-    const volunteerModal = document.getElementById('volunteerModal');
-    if (event.target === volunteerModal) {
-        closeVolunteerModal();
+    const petName = document.getElementById("pet-name").value;
+    const petType = document.getElementById("pet-type").value;
+    const petDescription = document.getElementById("pet-description").value;
+    const petImageFile = document.getElementById("pet-image").files[0];
+    
+    // Check if an image file is selected
+    if (!petImageFile) {
+      alert("Please upload an image of the pet.");
+      return;
     }
-};
 
+    const petLocation = document.getElementById("pet-location").value;
 
+    // Create a FileReader to read the image
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      // Create a new pet object
+      const pet = {
+        name: petName,
+        type: petType,
+        description: petDescription,
+        image: event.target.result, // Use the image data URL
+        location: petLocation,
+        latitude: latitude,
+        longitude: longitude,
+      };
 
+      // Add the pet to the array and display it
+      pets.push(pet);
+      displayPets(pets);
+
+      // Reset the form
+      document.getElementById("report-pet-form").reset();
+    };
+
+    // Read the uploaded image as a data URL
+    reader.readAsDataURL(petImageFile);
+  });
+
+// Function to display pets in the pet card container
+function displayPets(petsArray) {
+  const petsContainer = document.getElementById('pets-container');
+  petsContainer.innerHTML = ''; // Clear the container
+
+  petsArray.forEach(pet => {
+      const petCard = document.createElement('div');
+      petCard.classList.add('pet-card');
+
+      petCard.innerHTML = `
+          <img src="${pet.image}" alt="${pet.name}" style="width: 100%; height: auto;"> <!-- Ensure responsive image -->
+          <h3>${pet.name}</h3>
+          <p>${pet.description}</p>
+          <p><strong>Location:</strong> ${pet.location}</p> <!-- Display location -->
+          <button onclick="adoptPet('${pet.name}')">Adopt</button>
+      `;
+
+      petsContainer.appendChild(petCard);
+  });
+}
+
+// Function to handle pet adoption requests
+function adoptPet(petName) {
+  const adoptionRequestsList = document.getElementById("adoption-requests-list");
+  const listItem = document.createElement("li");
+  listItem.textContent = `You have requested to adopt ${petName}.`;
+  adoptionRequestsList.appendChild(listItem);
+}
+
+// Initialize the map
+let map;
+function initMap() {
+  const defaultLocation = { lat: -34.397, lng: 150.644 };
+  map = new google.maps.Map(document.getElementById("map-container"), {
+    zoom: 10,
+    center: defaultLocation,
+  });
+}
+
+// Function to update the map with rescue locations
+function updateMap(petsArray) {
+  petsArray.forEach((pet) => {
+    if (pet.latitude && pet.longitude) {
+      const petLocation = { lat: pet.latitude, lng: pet.longitude };
+      new google.maps.Marker({
+        position: petLocation,
+        map: map,
+        title: pet.name,
+      });
+    }
+  });
+}
+
+// Search functionality
+document.getElementById("search-bar").addEventListener("input", function () {
+  const searchTerm = this.value.toLowerCase();
+  const filteredPets = pets.filter((pet) =>
+    pet.name.toLowerCase().includes(searchTerm)
+  );
+  displayPets(filteredPets);
+});
+
+// Filter functionality
+document
+  .getElementById("pet-type-filter")
+  .addEventListener("change", function () {
+    const selectedType = this.value;
+    const filteredPets =
+      selectedType === "all"
+        ? pets
+        : pets.filter((pet) => pet.type === selectedType);
+    displayPets(filteredPets);
+  });
+
+// Donation handler
+function handleDonation() {
+  alert("Thank you for your support!");
+}
+
+// Get location on page load
+getLocation();
