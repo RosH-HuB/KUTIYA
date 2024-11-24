@@ -15,23 +15,45 @@
       <a href="#" class="logo">
         <img src="logo.png" alt="Logo" class="logo-img">
         <div class="logo-text">
-            <span class="main-title">KUTIYA</span>
+            <span class="main-title">PilluPilla.com</span>
             <span class="subtitle">Kindness Unites Tails In Your Area</span>
         </div>
     </a>
     
-        <ul class="navbar">
+        <ul class="navbar"> 
             <li><a href="#home">Home</a></li>
             <li><a href="#report">Report Pet</a></li>
             <li><a href="#pets-container">Adopt Pet</a></li>
-            <li><a href="#donation">Donation</a></li>
-          </section>
+            <li><a href="#" onclick="openDonationModal()">Donation</a></li> <!-- Updated -->
+            <button id="dark-mode-toggle"> Dark Mode</button>
+
+
+        </section>
           
           
         </ul>
         <span class="toggle-menu">☰</span>
     </nav>
 
+
+
+    <!-- Modal for Donationn form -->
+ <div id="donation-modal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeDonationModal()">&times;</span>
+        <h2>Make a Donation</h2>
+        <form id="donation-form" onsubmit="submitDonation(event)">
+            <label for="amount">Donation Amount (INR):</label>
+            <input type="number" id="amount" required min="1" step="any">
+  
+            <label for="upi-id">Your UPI ID:</label>
+            <input type="text" id="upi-id" required placeholder="example@upi">
+  
+            <button type="submit">Donate Now</button>
+        </form>
+    </div>
+  </div>
+  
     <!-- Home Section -->
     <section id="home">
         <h1>Welcome to Pet Rescue & Adoption</h1>
@@ -41,7 +63,7 @@
    
     <!-- Search Bar -->
     <section id="search">
-        <input type="text" id="search-bar" placeholder="Search pets by name,category...">
+        <input type="text" id="search-bar" placeholder="Search pets by name...">
     </section>
 
     <!-- Pet Type Filter -->
