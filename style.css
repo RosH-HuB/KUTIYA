@@ -90,6 +90,33 @@ nav h1 {
     border-bottom: 2px solid #ff6b6b;
 }
 
+/* dark mode  */
+body.dark-mode {
+    background-color: #333;
+    color: #f8f9fa;
+  }
+/* Dark Mode Toggle Button */
+#dark-mode-toggle {
+    background-color: #444; /* Black background */
+    color: #fff; /* White text */
+    padding: 5px 4px;
+    border: none;
+    border-radius: 25px; /* Rounded corners for oval shape */
+    cursor: pointer;
+    font-size: 8px;
+    transition: background-color 0.3s ease;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+}
+
+#dark-mode-toggle:hover {
+    background-color: #333; /* Slightly lighter black on hover */
+}
+
+
+  
+
 #home::before {
     content: "";
     position: absolute; /* Position the pseudo-element absolutely */
@@ -207,14 +234,17 @@ nav h1 {
 }
 
 /* Pet Cards */
+/* Pet Cards Container */
 #pets-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
     padding: 20px;
+    max-width: 100%;
 }
 
+/* Pet Card */
 .pet-card {
     width: 280px;
     padding: 20px;
@@ -223,13 +253,13 @@ nav h1 {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Start stacking content at the top */
+    height: auto; /* Let the card height adjust to its content */
 }
 
-.pet-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
-}
-
+/* Pet Image */
 .pet-card img {
     width: 100%;
     height: 180px;
@@ -238,18 +268,23 @@ nav h1 {
     margin-bottom: 15px;
 }
 
+/* Ensure text wraps naturally */
 .pet-card h3 {
     margin: 10px 0;
     font-size: 22px;
     color: #ff6b6b;
+    word-wrap: break-word; /* Ensure long words break properly */
 }
 
 .pet-card p {
     font-size: 16px;
     color: #555;
     margin-bottom: 15px;
+    word-wrap: break-word; /* Ensure long words break properly */
+    white-space: normal; /* Allow text to wrap to the next line */
 }
 
+/* Ensure buttons don't overflow */
 .pet-card button {
     padding: 10px 15px;
     background-color: #28a745;
@@ -260,7 +295,9 @@ nav h1 {
     cursor: pointer;
     border-radius: 6px;
     transition: background-color 0.3s ease;
+    margin-top: auto; /* Push button to the bottom if needed */
 }
+
 
 .pet-card button:hover {
     background-color: #218838;
@@ -342,6 +379,72 @@ footer a:hover {
         width: 90%;
     }
 }
+
+/* css for donation  */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 300px; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* donation */
+
 
 
 
