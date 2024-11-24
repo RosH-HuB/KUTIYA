@@ -156,3 +156,40 @@ function handleDonation() {
 
 // Get location on page load
 getLocation();
+
+
+// donation
+// Donation Modal Script
+function openDonationModal() {
+  document.getElementById('donation-modal').style.display = 'block';
+}
+
+function closeDonationModal() {
+  document.getElementById('donation-modal').style.display = 'none';
+}
+
+function submitDonation(event) {
+  event.preventDefault(); // Prevent the form from submitting normally
+
+  const amount = document.getElementById('amount').value;
+  const upiId = document.getElementById('upi-id').value;
+
+  // Create the UPI payment link
+  const paymentLink = `upi://pay?pa=${upiId}&pn=YourOrganizationName&mc=1234&tid=${new Date().getTime()}&tn=Donation%20for%20Animal%20Rescue&am=${amount}&cu=INR&url=https://yourwebsite.com`;
+
+  // Redirect to the UPI payment link
+  window.location.href = paymentLink;
+
+  // Close the modal after submission
+  closeDonationModal();
+}
+
+
+// dark mode script
+
+const toggleDarkMode = document.getElementById('dark-mode-toggle');
+toggleDarkMode.addEventListener('click', () => {
+  document.body.classList.toggle('dark-mode');
+  
+});
+
